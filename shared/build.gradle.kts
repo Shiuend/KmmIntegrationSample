@@ -4,8 +4,10 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("com.prof18.kmp.fatframework.cocoa") version "0.2.1"
 }
 
+val iosFrameworkName = "shared"
 version = "1.0"
 
 kotlin {
@@ -52,5 +54,21 @@ android {
     defaultConfig {
         minSdkVersion(26)
         targetSdkVersion(31)
+    }
+}
+
+fatFrameworkCocoaConfig {
+    frameworkName = iosFrameworkName
+//    outputPath = "$rootDir/../test-dest-xc"
+    outputPath = "$rootDir/../../KMM/KmmIntegrationSample-Shared"
+    versionName = "1.1-SNAPSHOT"
+    useXCFramework = true
+
+    cocoaPodRepoInfo {
+        summary = "This is a test KMP framework"
+        homepage = "https://github.com/Shiuend/KmmIntegrationSample-Shared"
+        license = "Apache"
+        authors = "\"Nathan\" => \"mail@mail.com\""
+        gitUrl = "git@github.com:Shiuend/KmmIntegrationSample-Shared.git"
     }
 }
